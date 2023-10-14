@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 style=text-align:center>Articles</h1>
+
+<div id="articles" style=text-align:center>
+  <% @articles.each do |article| %>
+    <%= render article %>
+    <p>
+      <%= link_to "Show this article", article %>
+    </p>
+  <% end %>
+</div>
+
+<div style=text-align:center>
+  <%= link_to "New article", new_article_path %>
+</div>
+

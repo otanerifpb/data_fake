@@ -1,0 +1,54 @@
+<%= form_with(model: article) do |form| %>
+  <% if article.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+        <% article.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :titulo, style: "display: block" %>
+    <%= form.text_field :titulo %>
+  </div>
+
+  <div>
+    <%= form.label :autor, style: "display: block" %>
+    <%= form.text_field :autor %>
+  </div>
+
+  <div>
+    <%= form.label :resumo, style: "display: block" %>
+    <%= form.text_field :resumo %>
+  </div>
+
+  <div>
+    <%= form.label :universidade, style: "display: block" %>
+    <%= form.text_field :universidade %>
+  </div>
+
+  <div>
+    <template data-nested-form-target="template">
+      <%= form.fields_for :keywords, Keyword.new, child_index: 'NEW_RECORD' do |keyword_fields| %>
+        <%= render "keyword_form" f: keyword_fields %> 
+      <% end %>
+    </template>
+		<%= form.fields_for :keywords do |keyword_fields| %>
+      <%= render "keyword_form" f: keyword_fields %> 
+    <% end %>
+
+    <!--Inserted elements will be injected before that target. -->
+    <div data-nested-form-target="target"></div>
+
+    <button type="button" data-action="nested-form#add">+ Keyword</button>
+  </div>
+
+  <br>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
