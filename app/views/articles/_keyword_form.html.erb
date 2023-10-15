@@ -1,11 +1,11 @@
 <div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
 
-    <p>
-        <strong><%= f.label :palavra %></strong>
+    <div>
+        <%= f.label :palavra, style: "display: block" %>
         <%= f.text_field :palavra %>
-    </p>
+    </div>
 
-    <button>
+    <button type="button" data-action="nested-form#remove">
         Remove Keyword
     </button>
 

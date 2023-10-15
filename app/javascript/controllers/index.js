@@ -6,8 +6,18 @@ import { application } from "controllers/application"
 import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 eagerLoadControllersFrom("controllers", application)
 
+import { Application } from '@hotwired/stimulus'
 import NestedForm from 'stimulus-rails-nested-form'
+
+const application = Application.start()
 application.register('nested-form', NestedForm)
+
+export default class extends NestedForm {
+    connect() {
+      super.connect()
+      console.log('Do what you want here.')
+    }
+  }
 
 // Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
